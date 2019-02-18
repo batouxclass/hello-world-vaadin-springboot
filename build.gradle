@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+         mavenCentral()
+         maven { url 'https://maven.vaadin.com/vaadin-prereleases'}
+         maven { url 'http://maven.vaadin.com/vaadin-addons'}
+         
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+    }
+}
+
+repositories {
+  mavenCentral()
+  maven { url 'https://maven.vaadin.com/vaadin-prereleases'}
+  maven { url 'http://maven.vaadin.com/vaadin-addons'}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation('com.vaadin:vaadin-bom:12.0.6')
+    implementation('com.vaadin:vaadin-spring-boot-starter:12.0.6')
+}
+
+bootJar {
+    baseName = 'hello-world-vaadin-springboot'
+    version = '0.0.1'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
+}
